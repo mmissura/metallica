@@ -1,4 +1,5 @@
 import logoMetallica from '../../assets/Images/logo.png';
+import bandMetallica0 from '../../assets/Images/band0.png';
 import bandMetallica from '../../assets/Images/band1.jpeg';
 import bandMetallica2 from '../../assets/Images/band2.jpeg';
 import kill from '../../assets/Images/kill.png';
@@ -24,81 +25,97 @@ function Home() {
       id: 1,
       name: 'Kill Em All',
       image: kill,
+      year: 1983,
     },
     {
       id: 2,
       name: 'Ride The Lightning',
       image: ride,
+      year: 1984,
     },
     {
       id: 3,
       name: 'Master of Puppets',
       image: master,
+      year: 1986,
     },
     {
       id: 4,
       name: 'Garage Days Re-Revised',
       image: garage,
+      year: 1987,
     },
     {
       id: 5,
       name: '...And Justice for All',
       image: justice,
+      year: 1988,
     },
     {
       id: 6,
       name: 'Black Album',
       image: black,
+      year: 1991,
     },
     {
       id: 7,
       name: 'Live Shit: Bing & Purge',
       image: shit,
+      year: 1993,
     },
     {
       id: 8,
       name: 'Load',
       image: load,
+      year: 1996,
     },
     {
       id: 9,
       name: 'Reload',
       image: reload,
+      year: 1997,
     },
     {
       id: 10,
       name: 'Garage Inc',
       image: garageinc,
+      year: 1998,
     },
     {
       id: 11,
       name: 'S&M',
       image: sm,
+      year: 1999,
     },
     {
       id: 12,
       name: 'St. Anger',
       image: stanger,
+      year: 2003,
     },
     {
       id: 13,
       name: 'Death Magnetic',
       image: death,
+      year: 2008,
     },
     {
       id: 14,
       name: 'Hardwired... to Self-Destruct',
       image: hardwire,
+      year: 2016,
     },
     {
       id: 15,
       name: 'S&M 2',
       image: sm2,
+      year: 2020,
     },
     {
       id: 16,
       name: '72 Seasons',
       image: season,
+      year: 2023,
     },
   ];
   return (
@@ -125,7 +142,7 @@ function Home() {
           <div>
             <img
               className="border w-100 border-gray-500 shadow-md"
-              src={bandMetallica2}
+              src={bandMetallica0}
               alt=""
             />
             <img
@@ -212,7 +229,7 @@ function Home() {
               <li
                 key={discografia.id}
                 className="m-auto bg-white rounded-md mb-6 border border-zinc-200 shadow-md 
-              hover:bg-yellow-400 p-6 xl:grid grid-cols-4 gap-8 items-center"
+                hover:bg-yellow-400 p-6 xl:grid grid-cols-4 gap-8 items-center"
               >
                 <div className="col-span-1 row-span-4">
                   <img
@@ -223,7 +240,7 @@ function Home() {
                 </div>
                 <div className="text-center xl:text-left lg:text-left xl:mt-0 lg:mt-0 mt-6 col-span-3">
                   <p className="font-bold text-xl">{discografia.name}</p>
-                  <p>1983</p>
+                  <p className="font-bold text-xl">{discografia.year}</p>
                 </div>
               </li>
             ))}

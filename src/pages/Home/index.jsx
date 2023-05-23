@@ -134,8 +134,8 @@ function Home() {
               alt=""
             />
           </div>
-          <div className="col-span-2">
-            <p>
+          <div className="col-span-2 xl:mt-0 lg:mt-0 mt-8">
+            <p className="mb-4">
               O <strong>Metallica</strong> foi formado em Los Angeles,
               Califórnia, no fim de 1981 quando o baterista Lars Ulrich colocou
               um anúncio num jornal de Los Angeles (The Recycler) que dizia
@@ -143,7 +143,7 @@ function Home() {
               Tygers of Pan Tang, Diamond Head e Iron Maiden".
             </p>
 
-            <p>
+            <p className="mb-4">
               Os guitarristas James Hetfield e Hugh Tanner de Leather Charm
               responderam ao anúncio. Embora ele ainda não tivesse formado uma
               banda, Ulrich perguntou para o fundador da Metal Blade Records
@@ -152,7 +152,7 @@ function Home() {
               e Ulrich convidou Hetfield para cantar e tocar baixo em 1981.
             </p>
 
-            <p>
+            <p className="mb-4">
               Ulrich conversou com seu amigo Ron Quintana, que estava criando
               nomes para um fanzine. Quintana tinha proposto os nomes de "Metal
               Mania" e "Metallica", portanto, Ulrich utilizou "Metallica" para o
@@ -161,7 +161,7 @@ function Home() {
               guitarra.{' '}
             </p>
 
-            <p>
+            <p className="mb-4">
               Desta vez Dave Mustaine respondeu ao anúncio, e depois de verem
               seu caro equipamento de baixo, Ulrich e Hetfield o chamaram para a
               banda. No início de 1982, os Metallica gravaram a primeira canção
@@ -170,7 +170,7 @@ function Home() {
               como o autor de um dos solos de guitarra da música.{' '}
             </p>
 
-            <p>
+            <p className="mb-4">
               Lançado em 14 de Junho de 1982, a primeira prensagem de Metal
               Massacre I listou incorretamente a banda como "Mettallica". Apesar
               de indignados pelo erro, o Metallica conseguiu criar "buzz"
@@ -180,7 +180,7 @@ function Home() {
               permaneceu na guitarra solo.{' '}
             </p>
 
-            <p>
+            <p className="mb-4">
               O Metallica gravou a sua primeira fita demo, intitulada No Life
               'Til Leather, um nome inspirado na primeira frase de Hit the
               Lights. No Outono de 1982, Ulrich e Hetfield assistiram a um show
@@ -191,7 +191,7 @@ function Home() {
               Metallica.{' '}
             </p>
 
-            <p>
+            <p className="mb-4">
               Hetfield e Mustaine queriam Ron McGovney fora da banda por acharem
               que ele "não estava contribuindo em nada", além do próprio Ron,
               que também não estava contente com a banda. Embora Burton tenha
@@ -204,25 +204,24 @@ function Home() {
           </div>
         </div>
       </section>
-      <section className="bg-zinc-100 p-12">
+      <section className="bg-zinc-100 p-12 w-full">
         <h2 className="text-4xl text-center mb-8  font-bold">Discografia</h2>
-        <ul>
+        <ul className="xl:grid lg:grid md:grid grid-cols-2 gap-8">
           {discografias &&
             discografias.map((discografia) => (
               <li
                 key={discografia.id}
-                className="w-1/2 bg-white rounded-md mb-6 border border-zinc-200 shadow-md 
-              hover:bg-yellow-400 p-7 xl:grid xl:grid-col-2 xl:grid-flow-col 
-              lg:grid lg:grid-col-2 lg:grid-flow-col gap-12 m-auto items-center"
+                className="m-auto bg-white rounded-md mb-6 border border-zinc-200 shadow-md 
+              hover:bg-yellow-400 p-6 xl:grid grid-cols-4 gap-8 items-center"
               >
-                <div>
+                <div className="col-span-1 row-span-4">
                   <img
-                    className="w-20 m-auto xl:m-0 lg:m-0"
+                    className="w-100 m-auto xl:m-0 lg:m-0"
                     src={discografia.image}
                     alt=""
                   />
                 </div>
-                <div className="text-center xl:mt-0 lg:mt-0 mt-6">
+                <div className="text-center xl:text-left lg:text-left xl:mt-0 lg:mt-0 mt-6 col-span-3">
                   <p className="font-bold text-xl">{discografia.name}</p>
                   <p>1983</p>
                 </div>

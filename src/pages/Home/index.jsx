@@ -1,8 +1,6 @@
 import { Link } from 'react-router-dom';
-import { Header } from '../../componentes/Header';
 import bandMetallica0 from '../../assets/Images/band0.png';
 import bandMetallica from '../../assets/Images/band1.jpeg';
-import bandMetallica2 from '../../assets/Images/band2.jpeg';
 import kill from '../../assets/Images/kill.png';
 import ride from '../../assets/Images/ride.png';
 import master from '../../assets/Images/master.png';
@@ -27,12 +25,27 @@ export function Home() {
       name: 'Kill Em All',
       image: kill,
       year: 1983,
+      slug: 'kill-em-all',
+      trackList: [
+        '1 - Hit the Lights',
+        '2 - Seek and Destroy',
+        '3 - Phantom Lord',
+        '4 - Whiplash',
+        '5 - Motorbreath',
+        '6 - Metal Militia',
+        '7 - The Four Horsemen',
+        '8 - (Anesthesia) Pulling Teeth',
+        '9 - Jump in the Fire',
+        '10 - No Remorse',
+      ],
     },
     {
       id: 2,
       name: 'Ride The Lightning',
       image: ride,
       year: 1984,
+      slug: 'ride-the-lighting',
+      trackList: ['1 - ', '2 - '],
     },
     {
       id: 3,
@@ -138,11 +151,6 @@ export function Home() {
               src={bandMetallica0}
               alt=""
             />
-            <img
-              className="border w-100 border-gray-500 shadow-md mt-10"
-              src={bandMetallica2}
-              alt=""
-            />
           </div>
           <div className="col-span-2 xl:mt-0 lg:mt-0 mt-8">
             <p className="mb-4">
@@ -168,23 +176,28 @@ export function Home() {
         <ul className="xl:grid lg:grid md:grid grid-cols-2 gap-8">
           {discografias &&
             discografias.map((discografia) => (
-              <li
+              <Link
+                to={`discografia/${discografia.slug}`}
                 key={discografia.id}
-                className="m-auto bg-white rounded-md mb-6 border border-zinc-200 shadow-md 
-                hover:bg-yellow-400 p-6 xl:grid grid-cols-4 gap-8 items-center"
+                state={discografia}
               >
-                <div className="col-span-1 row-span-4">
-                  <img
-                    className="w-100 m-auto xl:m-0 lg:m-0"
-                    src={discografia.image}
-                    alt=""
-                  />
-                </div>
-                <div className="text-center xl:text-left lg:text-left xl:mt-0 lg:mt-0 mt-6 col-span-3">
-                  <p className="font-bold text-xl">{discografia.name}</p>
-                  <p className="font-bold text-xl">{discografia.year}</p>
-                </div>
-              </li>
+                <li
+                  className="m-auto bg-white rounded-md mb-6 border border-zinc-200 shadow-md 
+                hover:bg-yellow-400 p-6 xl:grid grid-cols-4 gap-8 items-center"
+                >
+                  <div className="col-span-1 row-span-4">
+                    <img
+                      className="w-100 m-auto xl:m-0 lg:m-0"
+                      src={discografia.image}
+                      alt=""
+                    />
+                  </div>
+                  <div className="text-center xl:text-left lg:text-left xl:mt-0 lg:mt-0 mt-6 col-span-3">
+                    <p className="font-bold text-xl">{discografia.name}</p>
+                    <p className="font-bold text-xl">{discografia.year}</p>
+                  </div>
+                </li>
+              </Link>
             ))}
         </ul>
       </section>

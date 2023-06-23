@@ -31,8 +31,8 @@ export function Discografia() {
           {state.name} ({state.year})
         </h2>
         <div className="xl:grid grid-cols-2 gap-4">
-          <img className="w-full" src={state.image} />
-          <div>
+          <img className="w-96" src={state.image} />
+          <div className="font-bold">
             {state.trackList &&
               state.trackList.map((track) => <p key={track}>{track}</p>)}
           </div>

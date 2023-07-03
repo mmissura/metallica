@@ -16,11 +16,9 @@ import hardwire from '../../assets/Images/hardwire.png';
 import sm2 from '../../assets/Images/sm2.png';
 import season from '../../assets/Images/72.png';
 
-export function Discografia() {
+export const Discografia = () => {
   const { slug } = useParams();
   const { state } = useLocation();
-
-  console.log(state.image);
 
   return (
     // com o tailwind, inserimos o css diretamente no nome da classe
@@ -40,4 +38,4 @@ export function Discografia() {
       </section>
     </div>
   );
-}
+};

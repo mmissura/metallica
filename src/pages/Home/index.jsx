@@ -6,7 +6,7 @@ import bandMetallica from '../../assets/Images/band1.jpeg';
 
 // () => {} - SINTAXE DE AEROFUNCTION
 
-export function Home() {
+export const Home = () => {
   const [albuns, setAlbuns] = useState(null);
   const [loader, setLoader] = useState(true);
   const [error, setError] = useState(false);
@@ -69,6 +69,14 @@ export function Home() {
           </div>
         </div>
       </section>
+
+      <section className="bg-zinc-200 p-12 w-full">
+        <h2 className="text-4xl text-center mb-8  font-bold">Integrantes</h2>
+        <Link className="text-black font-bold" to="integrantes">
+          <h2>clique aqui</h2>
+        </Link>
+      </section>
+
       <section className="bg-zinc-100 p-12 w-full">
         <h2 className="text-4xl text-center mb-8  font-bold">Discografia</h2>
         {loader == true ? (
@@ -111,4 +119,4 @@ export function Home() {
       </section>
     </div>
   );
-}
+};

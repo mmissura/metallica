@@ -7,3 +7,11 @@ export const getAlbuns = async () => {
     return resposta;
   } catch (error) {}
 };
+
+export const getMembers = async () => {
+  try {
+    const resposta = await api.get('/metallica/members');
+
+    return resposta;
+  } catch (error) {}
+};

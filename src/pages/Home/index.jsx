@@ -1,73 +1,25 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { getAlbuns, getMembers } from './actions';
+import { useDiscografiaStore } from '../Discografia/Store';
+import { useMemberStore } from '../Integrantes/Store';
 import bandMetallica0 from '../../assets/Images/band0.png';
 import bandMetallica from '../../assets/Images/band1.jpeg';
 
 // () => {} - SINTAXE DE AEROFUNCTION
 
 export const Home = () => {
-  const [albuns, setAlbuns] = useState(null);
-  const [members, setMembers] = useState(null);
-  const [loader, setLoader] = useState(true);
-  const [error, setError] = useState(false);
+  const { albuns, loaderAlbuns, errorAlbuns } = useDiscografiaStore();
+  const { members, loaderMembers, errorMembers } = useMemberStore();
+
+  console.log(albuns);
 
   // sempre que for fazer uma chamada externa (API), usa-se o async na função e o await na resposta da chamada ao endpoint
 
-  const getAlbunsInitial = async () => {
-    try {
-      setError(false);
-      setLoader(true);
-      const respostaFuncao = await getAlbuns();
-      setAlbuns(respostaFuncao.data.albums);
-      setLoader(false);
-    } catch (error) {
-      setError(true);
-      setLoader(false);
-    }
-  };
-
-  const getMembersInitial = async () => {
-    try {
-      setError(false);
-      setLoader(true);
-      const respostaFuncao = await getMembers();
-      setMembers(respostaFuncao.data.members);
-      setLoader(false);
-    } catch (error) {
-      setError(true);
-      setLoader(false);
-    }
-  };
-
   useEffect(() => {
-    getAlbunsInitial();
-    getMembersInitial();
+    getAlbuns();
+    getMembers();
   }, []);
-
-  // const integrantes = [
-  //   {
-  //     id: 1,
-  //     name: 'James Hetfiled',
-  //     slug: 'james-hetfield',
-  //     image:
-  //       'https://bravewords.com/medias-static/images/news/2017/59C18005-metallica-frontman-james-hetfield-one-i-stopped-breaking-strings-live-i-wondered-why-three-new-promo-videos-posted-for-hetfield-hammett-experience-image.jpg',
-  //     biografia: [
-  //       'James Alan Hetfield (Downey, 3 de agosto de 1963) é um vocalista, guitarrista, produtor musical, empresário e customizador de carro snorte-americano. É o co-fundador (juntamente com Lars Ulrich) e o principal compositor da banda de heavy metal Metallica. No ano de 2004, James foi considerado o melhor guitarrista base de heavy metal de todos os tempos pela revista Guitar World, e em 2010 considerado pela MusicRadar o 12º melhor vocalista de todos os tempos.',
-  //       'James Hetfield foi criado numa família norte-americana tradicional, seguidores rigorosos da Ciência Cristã, cujos valores começaram a ser questionados por ele durante a adolescência, o que criou vários conflitos com seu pai, Virgil Hetfield, que era camionista. James voltaria à fé somente em meados da década de 1990. Sua mãe, Cynthia, foi cantora lírica quando jovem, e ajudou James em seus primeiros passos na música quando ele era criança. Virgil saiu de casa quando James tinha treze anos (1977) e não voltou mais. James voltou a manter contato com seu pai somente depois do lançamento do Black Album, mas disse em uma entrevista que achou o comportamento do pai inapropriado, pois ele só o procurava para assinar certos papéis.',
-  //     ],
-  //   },
-  //   {
-  //     id: 2,
-  //     name: 'Lars Ulrich',
-  //     slug: 'lars-ulrich',
-  //     image:
-  //       'https://bravewords.com/medias-static/images/news/2017/59C18005-metallica-frontman-james-hetfield-one-i-stopped-breaking-strings-live-i-wondered-why-three-new-promo-videos-posted-for-hetfield-hammett-experience-image.jpg',
-  //     biografia: [
-  //       'Sir Lars Ulrich (Gentofte, 26 de dezembro de 1963) é um músico, ator, empresário, produtor musical, radialista e ex-tenista dinamarquês. Alcançou fama mundial por ser o baterista e o co-fundador (juntamente com James Hetfield) da banda norte-americana de heavy metal, Metallica. Ele é filho do ex-tenista profissional Torben Ulrich, neto do também ex-tenista Einer Ulrich, e foi afilhado do músico de jazz Dexter Gordon. Em 2004, a revista Kerrang! elegeu Lars a 9ª personalidade de maior influência no mundo do rock n roll. Ficou em 55° lugar na lista dos "66 melhores bateristas de hard rock e metal de todos os tempos" do site Loudwire.',
-  //     ],
-  //   },
-  // ];
 
   return (
     // com o tailwind, inserimos o css diretamente no nome da classe
@@ -114,6 +66,15 @@ export const Home = () => {
         {/* <Link className="text-black font-bold" to="integrantes">
           <h2 className="text-center">Clique Aqui</h2>
         </Link> */}
+        {loaderMembers == true ? (
+          <p className="text-center font-bold my-12 text-2xl">Loading...</p>
+        ) : null}
+
+        {errorMembers == true ? (
+          <p className="text-center font-bold my-12 text-2xl">
+            Ocorreu um erro, tente mais tarde!
+          </p>
+        ) : null}
         <ul className="xl:grid lg:grid md:grid grid-cols-4 gap-8">
           {members &&
             members.map((integrante) => (
@@ -133,16 +94,14 @@ export const Home = () => {
 
       <section className="bg-zinc-100 p-12 w-full">
         <h2 className="text-4xl text-center mb-8  font-bold">Discografia</h2>
-        {loader == true ? (
+        {loaderAlbuns == true ? (
           <p className="text-center font-bold my-12 text-2xl">Loading...</p>
         ) : null}
-
-        {error == true ? (
+        {errorAlbuns == true ? (
           <p className="text-center font-bold my-12 text-2xl">
             Ocorreu um erro, tente mais tarde!
           </p>
         ) : null}
-
         <ul className="xl:grid lg:grid md:grid grid-cols-2 gap-8">
           {albuns &&
             albuns.map((discografia) => (

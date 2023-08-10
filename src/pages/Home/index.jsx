@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { getAlbuns, getMembers } from './actions';
+import { Link, useNavigate } from 'react-router-dom';
+import { getMembers } from '../Integrantes/actions';
+import { getAlbuns } from '../Discografia/actions';
 import { useDiscografiaStore } from '../Discografia/Store';
 import { useMemberStore } from '../Integrantes/Store';
 import bandMetallica0 from '../../assets/Images/band0.png';
@@ -9,12 +10,17 @@ import bandMetallica from '../../assets/Images/band1.jpeg';
 // () => {} - SINTAXE DE AEROFUNCTION
 
 export const Home = () => {
-  const { albuns, loaderAlbuns, errorAlbuns } = useDiscografiaStore();
+  const { albuns, loaderAlbuns, errorAlbuns, setAlbumSelected } =
+    useDiscografiaStore();
   const { members, loaderMembers, errorMembers } = useMemberStore();
-
-  console.log(albuns);
+  const navigate = useNavigate();
 
   // sempre que for fazer uma chamada externa (API), usa-se o async na função e o await na resposta da chamada ao endpoint
+
+  const handleSetAlbum = (album) => {
+    setAlbumSelected(album);
+    navigate(`discografia`);
+  };
 
   useEffect(() => {
     getAlbuns();
@@ -105,28 +111,26 @@ export const Home = () => {
         <ul className="xl:grid lg:grid md:grid grid-cols-2 gap-8">
           {albuns &&
             albuns.map((discografia) => (
-              <Link
-                to={`discografia/${discografia.slug}`}
+              <li
                 key={discografia.id}
-                state={discografia}
+                className="m-auto bg-white rounded-md mb-6 border border-zinc-200 shadow-md 
+                hover:bg-yellow-400 p-6 xl:grid grid-cols-4 gap-8 items-center cursor-pointer"
+                onClick={() => {
+                  handleSetAlbum(discografia);
+                }}
               >
-                <li
-                  className="m-auto bg-white rounded-md mb-6 border border-zinc-200 shadow-md 
-                hover:bg-yellow-400 p-6 xl:grid grid-cols-4 gap-8 items-center"
-                >
-                  <div className="col-span-1 row-span-4">
-                    <img
-                      className="w-100 m-auto xl:m-0 lg:m-0"
-                      src={discografia.image}
-                      alt=""
-                    />
-                  </div>
-                  <div className="text-center xl:text-left lg:text-left xl:mt-0 lg:mt-0 mt-6 col-span-3">
-                    <p className="font-bold text-xl">{discografia.name}</p>
-                    <p className="font-bold text-xl">{discografia.year}</p>
-                  </div>
-                </li>
-              </Link>
+                <div className="col-span-1 row-span-4">
+                  <img
+                    className="w-100 m-auto xl:m-0 lg:m-0"
+                    src={discografia.image}
+                    alt=""
+                  />
+                </div>
+                <div className="text-center xl:text-left lg:text-left xl:mt-0 lg:mt-0 mt-6 col-span-3">
+                  <p className="font-bold text-xl">{discografia.name}</p>
+                  <p className="font-bold text-xl">{discografia.year}</p>
+                </div>
+              </li>
             ))}
         </ul>
       </section>

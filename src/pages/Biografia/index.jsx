@@ -197,7 +197,7 @@ export function Biografia() {
               alt=""
             />
           </div>
-          <div className="col-span-2 xl:mt-0 lg:mt-0 mt-8">
+          <div className="col-span-2 xl:mt-0 lg:mt-0 mt-8 text-justify">
             <p className="mb-4">
               O <strong>Metallica</strong> foi formado em Los Angeles,
               Califórnia, no fim de 1981 quando o baterista Lars Ulrich colocou

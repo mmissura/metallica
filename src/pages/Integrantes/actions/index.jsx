@@ -10,6 +10,7 @@ export const getMembers = async () => {
     const respostaMembers = await api.get('/metallica/members');
     useMemberStore.setState({
       members: respostaMembers.data.members,
+      exMembers: respostaMembers.data.exMembers,
       loaderMembers: false,
       errorMembers: false,
     });

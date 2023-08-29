@@ -12,7 +12,7 @@ import bandMetallica from '../../assets/Images/band1.jpeg';
 export const Home = () => {
   const { albuns, loaderAlbuns, errorAlbuns, setAlbumSelected } =
     useDiscografiaStore();
-  const { members, loaderMembers, errorMembers } = useMemberStore();
+  const { members, exMembers, loaderMembers, errorMembers } = useMemberStore();
   const navigate = useNavigate();
 
   // sempre que for fazer uma chamada externa (API), usa-se o async na função e o await na resposta da chamada ao endpoint
@@ -92,6 +92,27 @@ export const Home = () => {
                 <li className="w-full text-center bg-white" key={integrante.id}>
                   <img src={integrante.thumbnail}></img>
                   <p>{integrante.name}</p>
+                </li>
+              </Link>
+            ))}
+        </ul>
+        <h2 className="text-4xl text-center mb-8  font-bold mt-8">
+          Ex-Integrantes
+        </h2>
+        <ul className="xl:grid lg:grid md:grid grid-cols-5 gap-8">
+          {exMembers &&
+            exMembers.map((exIntegrante) => (
+              <Link
+                to={`integrantes/${exIntegrante.slug}`}
+                key={exIntegrante.id}
+                state={exIntegrante}
+              >
+                <li
+                  className="w-full text-center bg-white"
+                  key={exIntegrante.id}
+                >
+                  <img src={exIntegrante.thumbnail}></img>
+                  <p>{exIntegrante.name}</p>
                 </li>
               </Link>
             ))}

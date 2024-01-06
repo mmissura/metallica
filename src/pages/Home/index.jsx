@@ -52,8 +52,8 @@ export const Home = () => {
               O <strong>Metallica</strong> foi formado em Los Angeles,
               Califórnia, no fim de 1981 quando o baterista Lars Ulrich colocou
               um anúncio num jornal de Los Angeles (The Recycler) que dizia
-              "Baterista à procura de outros músicos de metal para jam com
-              Tygers of Pan Tang, Diamond Head e Iron Maiden".
+              'Baterista à procura de outros músicos de metal para jam com
+              Tygers of Pan Tang, Diamond Head e Iron Maiden'.
             </p>
 
             <Link
